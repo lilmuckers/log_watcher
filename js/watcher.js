@@ -26,7 +26,6 @@ LogWatcher.prototype.skipToBottom = function(file)
 {
   var log = this._getLog(file).find('pre');
   log.scrollTop(log.prop('scrollHeight'));
-  console.log(log.scrollTop(), log.prop('scrollHeight'));
 }
 
 LogWatcher.prototype.handleSetup = function()
@@ -117,7 +116,7 @@ LogWatcher.prototype._pulse = function()
 LogWatcher.prototype._handleSuccess = function(data, status, xhr){
   for(var file in data){
     var log = this._getLog(file);
-    var startLine = parseInt(log.find('span:last-child').prev().html()) + 1;
+    var startLine = parseInt(log.find('span').last().prev().html()) + 1;
     
     //start line
     if(!startLine) startLine = 1;
