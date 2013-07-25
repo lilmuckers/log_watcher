@@ -202,9 +202,9 @@ class LogReview
   public function render($filename = 'index.phtml')
   {
     ob_start();
-  	include($filename);
-  	$_html = ob_get_clean();
-  	return $_html;
+    include($filename);
+    $_html = ob_get_clean();
+    return $_html;
   }
   
   /**
