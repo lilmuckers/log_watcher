@@ -91,10 +91,6 @@ class LogReview
     $_lines=array();
     $_fp = fopen($_file['location'], "r");
     
-    
-    $_readable = is_readable($_file['location']);
-    $_all = file_get_contents($_file['location']);
-    
     // check that the file opened properly
     if(false == $_fp){
       throw new Exception('Could not open file "'.$code.'"');
@@ -130,6 +126,11 @@ class LogReview
     //this is to account for moments where an inexplained line break might mean the last line
     //doesn't have a timestamp
     $_lines = $this->getLastLines($code, $line);
+    
+    //if we have no lines, it's an empty file and we return the date *now*
+    if(empty($_lines)){
+      return date('U');
+    }
     
     //get the file information
     $_file = $this->getFile($code);
